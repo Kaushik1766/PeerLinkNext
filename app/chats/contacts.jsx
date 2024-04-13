@@ -1,4 +1,4 @@
-export default function Contacts({name,imgURL}) {
+export default function Contacts({ name, imgURL }) {
     return (
         <div className="flex pb-3 w-80 rounded-xl">
             <div className="avatar">
