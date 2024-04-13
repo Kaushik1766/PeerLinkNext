@@ -1,18 +1,17 @@
 import React from "react";
 import chats from "../data/ChatData";
+import ChatContacts from "../chats/ChatContacts";
+import Navbar from "../components/Navbar";
 
 export default function ({ message, type }) {
   return (
     <>
-      <div>
-        <div className="chat-image avatar">
-          <div className="w-10 rounded-full"></div>
-        </div>
+
+      <div className="border-l-2 border-slate-600 p-4 flex flex-col h-screen w-full">
         {chats.map((e, i) => (
           <div
-            className={`chat ${
-              e.type === "sender" ? "chat-end" : "chat-start"
-            }`}
+            className={`chat ${e.type === "sender" ? "chat-end" : "chat-start"
+              } w-full`}
           >
             <div className="chat-image avatar">
               <div className="w-10 rounded-full">
@@ -23,11 +22,10 @@ export default function ({ message, type }) {
               </div>
             </div>
             <div
-              className={`chat-bubble ${
-                e.type === "sender"
-                  ? "chat-bubble-primary"
-                  : "chat-bubble-accent"
-              }`}
+              className={`chat-bubble ${e.type === "sender"
+                ? "chat-bubble-primary"
+                : "chat-bubble-accent"
+                }`}
             >
               {e.message}
             </div>
