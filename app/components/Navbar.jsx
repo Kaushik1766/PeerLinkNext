@@ -2,7 +2,7 @@ import React from 'react'
 
 function Navbar() {
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 border-2 border-slate-700">
             <div className="flex-1">
                 <a className="btn btn-ghost text-xl">PeerLink</a>
             </div>

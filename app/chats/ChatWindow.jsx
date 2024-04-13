@@ -4,7 +4,7 @@ import chats from "../data/ChatData";
 export default function ({ message, type }) {
   return (
     <>
-      <div className="flex flex-col bg-green-500 h-screen w-4/5 ml-40">
+      <div>
         <div className="chat-image avatar">
           <div className="w-10 rounded-full"></div>
         </div>
