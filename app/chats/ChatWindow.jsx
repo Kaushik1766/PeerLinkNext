@@ -8,7 +8,7 @@ export default function ({ message, type }) {
   return (
     <>
 
-      <div className="border-l-2 bg-base-200 border-slate-600 p-4 flex flex-col w-full">
+      <div className="border-l-2 bg-base-200 border-slate-600 pt-4 px-4 flex flex-col w-full relative">
         {chats.map((e, i) => (
           <div
             className={`chat ${e.type === "sender" ? "chat-end" : "chat-start"
