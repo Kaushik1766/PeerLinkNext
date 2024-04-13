@@ -1,13 +1,13 @@
-export default function Contacts() {
+export default function Contacts({name,imgURL}) {
     return (
-        <div className=" flex justify-start border-1 rounded-xl border-slate-600">
+        <div className="flex pb-3 w-80 rounded-xl">
             <div className="avatar">
-                <div className="w-12 rounded-full">
-                    <img className="w-12 rounded-full" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <div className="w-12 h-12 rounded-full">
+                    <img className="w-12 rounded-full" src={imgURL} />
                 </div>
             </div>
             <div className="pt-2 pl-2 text-lg font-medium">
-                Ayushi
+                {name}
             </div>
         </div>
     )
