@@ -2,6 +2,7 @@ import React from "react";
 import chats from "../data/ChatData";
 import ChatContacts from "../chats/ChatContacts";
 import Navbar from "../components/Navbar";
+import TextArea from './TextArea';
 
 export default function ({ message, type }) {
   return (
@@ -31,6 +32,7 @@ export default function ({ message, type }) {
             </div>
           </div>
         ))}
+        <TextArea></TextArea>
       </div>
     </>
   );
