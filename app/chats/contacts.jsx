@@ -1,4 +1,4 @@
-export default function HomeLeft() {
+export default function Contacts() {
     return (
         <div className=" flex justify-start border-1 rounded-xl border-slate-600">
             <div className="avatar">
