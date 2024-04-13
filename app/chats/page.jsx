@@ -9,7 +9,7 @@ export default function page() {
     <div>
       <Navbar></Navbar>
       <div className='flex w-full h-[90vh]'>
-        <div className='border-2 overflow-y-scroll border-slate-700 w-1/4 '>
+        <div className='p-4 overflow-y-scroll w-1/4 '>
           <ChatContacts />
         </div>
         <div className="border-2 overflow-y-scroll border-slate-700 w-3/4  ">
