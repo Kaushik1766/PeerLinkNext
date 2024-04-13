@@ -1,10 +1,16 @@
+'use client'
+
 import React from 'react'
 import ChatWindow from '../chats/ChatWindow'
 import Contacts from '../chats/contacts'
 import Navbar from '../components/Navbar';
 import ChatContacts from './ChatContacts';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function page() {
+  const dispatch = useDispatch()
+  const selector = useSelector((state) => state.userId)
+
   return (
     <div>
       <Navbar></Navbar>

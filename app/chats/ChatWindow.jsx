@@ -12,7 +12,7 @@ export default function ({ message, type }) {
         {chats.map((e, i) => (
           <div
             className={`chat ${e.type === "sender" ? "chat-end" : "chat-start"
-              } w-full`}
+              } w-full`} key={i}
           >
             <div className="chat-image avatar">
               <div className="w-10 rounded-full">
