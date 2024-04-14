@@ -15,8 +15,11 @@ export default function page() {
 
   useEffect(() => {
     if (!getCookie('uid')) {
-      dispatch(setCurrentUser(getCookie('uid')))
+      dispatch(setCurrentUser(null))
       window.location.href = "http://localhost:3000/login"
+    }
+    else{
+      dispatch(setCurrentUser(getCookie('uid')))
     }
   }, [])
 
