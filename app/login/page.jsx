@@ -5,9 +5,19 @@ import Login from './Login'
 import Signup from './Signup'
 import heroImg from '@/public/Home/5B_Q0G4CT8iXzJC5UxmtfQ.png'
 import Image from 'next/image'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { redirect } from 'next/navigation'
+
 
 function page() {
     const [tab, setTab] = useState(0)
+    const currentUser = useSelector((state) => state.user.currentUser)
+    useEffect(() => {
+        if (currentUser != null) {
+            redirect('/chats')
+        }
+    }, [])
     return (
         <>
             <div className='bg-base-100 h-screen justify-center items-center flex' data-theme=''>

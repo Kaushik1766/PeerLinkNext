@@ -7,29 +7,33 @@ import { useDispatch } from 'react-redux'
 function Login() {
     const dispatch = useDispatch()
 
-    useEffect(()=>{
-        if(getCookie('uid')){
+    useEffect(() => {
+        if (getCookie('uid')) {
             dispatch(setCurrentUser(getCookie('uid')))
             window.location.href = "http://localhost:3000/chats"
         }
-    },[])
+    }, [])
 
     async function submitForm(formdata) {
         let uid = formdata.get('uid')
         let password = formdata.get('password')
-        axios.post('http://localhost:4000/login', {
+        let res = await axios.post('http://localhost:4000/login', {
             uid: uid,
             password: password
-        }).then((res)=>{
-            console.log(res)
-            // window.alert(res.data.msg)
+        })
+        console.log(res)
+        // window.alert(res.data.msg)
+        // window.location.href = "http://localhost:3000/chats"
+        if (res.data.msg == "login success") {
+            console.log(uid);
+            dispatch(setCurrentUser(uid))
             // window.location.href = "http://localhost:3000/chats"
             dispatch(setCurrentUser(uid))
-            if(res.data.msg=="login success"){
-                setCookie('uid',uid,{  maxAge: 60 * 60 * 24 })
+            if (res.data.msg == "login success") {
+                setCookie('uid', uid, { maxAge: 60 * 60 * 24 })
                 window.location.href = "http://localhost:3000/chats"
             }
-            else{
+            else {
                 window.alert(res.data.msg)
             }
         })
