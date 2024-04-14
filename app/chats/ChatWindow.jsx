@@ -25,7 +25,7 @@ export default function ({ message, type }) {
             <div
               className={`chat-bubble ${e.type === "sender"
                 ? "chat-bubble-primary"
-                : "chat-bubble-accent"
+                : "chat-bubble-error"
                 }`}
             >
               {e.message}

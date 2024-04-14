@@ -1,7 +1,25 @@
+'use client'
+import { useEffect, useState } from 'react'
+import { io } from 'socket.io-client'
 
 export default function TextArea() {
+    const [socket, setSocket] = useState(undefined)
+    useEffect(() => {
+        let socket = io('http://localhost:5000/')
+        socket.emit('joinRoom', 1234)
+        socket.on('message', (msg) => {
+            console.log(msg);
+        })
+        setSocket(socket)
+    }, [])
     return (
-        <form className="sticky bottom-0 w-full left-0">
+        <form className="sticky bottom-0 w-full left-0" onSubmit={(e) => {
+            e.preventDefault()
+            let msg = e.target.chat.value
+            console.log(msg);
+            socket.emit('message', msg, 1234)
+            e.target.chat.value = ''
+        }}>
             {/* <label htmlFor="chat" className="">Your message</label> */}
             <div className="flex items-center px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-700">
                 <textarea id="chat" rows="1" className="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message..."></textarea>
