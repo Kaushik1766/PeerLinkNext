@@ -1,15 +1,28 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import ChatWindow from '../chats/ChatWindow'
 import Contacts from '../chats/contacts'
 import Navbar from '../components/Navbar';
 import ChatContacts from './ChatContacts';
 import { useDispatch, useSelector } from 'react-redux';
+import { getCookie } from 'cookies-next';
+import { setCurrentUser } from '@/redux/features/user';
 
 export default function page() {
   const dispatch = useDispatch()
   const selector = useSelector((state) => state.userId)
+
+  useEffect(() => {
+    if (!getCookie('uid')) {
+      dispatch(setCurrentUser(null))
+      window.location.href = "http://localhost:3000/login"
+    }
+    else{
+      dispatch(setCurrentUser(getCookie('uid')))
+    }
+  }, [])
+
 
   return (
     <div>

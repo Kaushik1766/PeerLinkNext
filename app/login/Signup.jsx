@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { setCookie } from 'cookies-next'
+import { useDispatch } from 'react-redux'
 
 function Signup() {
     const [otp, setOtp] = useState(0)
     const [preuid, setUid] =useState('')
+    const dispatch = useDispatch()
 
     async function submitForm(formdata) {
         if(otp==0){
@@ -33,6 +36,8 @@ function Signup() {
             }).then((res) => {
                 console.log(res)
                 if (res.data.msg == "email verified") {
+                    setCookie('uid',uid,{  maxAge: 60 * 60 * 24 })
+                    dispatch(setCurrentUser(uid))
                     window.location.href = "http://localhost:3000/chats"
                 }
                 else {

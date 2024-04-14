@@ -1,24 +1,42 @@
+import { setCurrentUser } from '@/redux/features/user'
 import axios from 'axios'
-import React from 'react'
+import { getCookie, setCookie } from 'cookies-next'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
 function Login() {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (getCookie('uid')) {
+            dispatch(setCurrentUser(getCookie('uid')))
+            window.location.href = "http://localhost:3000/chats"
+        }
+    }, [])
+
     async function submitForm(formdata) {
         let uid = formdata.get('uid')
         let password = formdata.get('password')
-        axios.post('http://localhost:4000/login', {
+        let res = await axios.post('http://localhost:4000/login', {
             uid: uid,
             password: password
-        }).then((res)=>{
-            console.log(res)
-            // window.alert(res.data.msg)
+        })
+        console.log(res)
+        // window.alert(res.data.msg)
+        // window.location.href = "http://localhost:3000/chats"
+        if (res.data.msg == "login success") {
+            console.log(uid);
+            dispatch(setCurrentUser(uid))
             // window.location.href = "http://localhost:3000/chats"
-            if(res.data.msg=="login success"){
+            dispatch(setCurrentUser(uid))
+            if (res.data.msg == "login success") {
+                setCookie('uid', uid, { maxAge: 60 * 60 * 24 })
                 window.location.href = "http://localhost:3000/chats"
             }
-            else{
+            else {
                 window.alert(res.data.msg)
             }
-        })
+        }
     }
     return (
         <form action={submitForm} className='flex flex-col mt-5 p-10 gap-8'>
