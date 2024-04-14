@@ -1,6 +1,6 @@
 const users = [
   {
-    name: 'user1',
+    name: 'Prateek',
     chats: [
       {
         sent: 'asd'
@@ -59,7 +59,7 @@ const users = [
     ]
   },
   {
-    name: 'user2',
+    name: 'Priyanshu',
     chats: [
       {
         sent: 'asdfas'
