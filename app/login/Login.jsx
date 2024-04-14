@@ -36,7 +36,7 @@ function Login() {
             else {
                 window.alert(res.data.msg)
             }
-        })
+        }
     }
     return (
         <form action={submitForm} className='flex flex-col mt-5 p-10 gap-8'>
