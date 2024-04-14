@@ -1,6 +1,12 @@
+import { setCurrentUser } from '@/redux/features/user'
+import { deleteCookie } from 'cookies-next'
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
 function Navbar() {
+    const dispatch = useDispatch()
+
+
     return (
         <div className="navbar bg-base-100 border-2 border-slate-700">
             <div className="flex-1">
@@ -24,7 +30,11 @@ function Navbar() {
                             </a>
                         </li>
                         <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
+                        <li><a onClick={()=>{
+                            dispatch(setCurrentUser(null))
+                            deleteCookie('uid')
+                            window.location.href = "http://localhost:3000/login"
+                        }}>Logout</a></li>
                     </ul>
                 </div>
             </div>
