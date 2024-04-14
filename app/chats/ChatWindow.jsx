@@ -1,8 +1,10 @@
-import React from "react";
+'use client'
+import React, { useEffect } from "react";
 import TextArea from "./TextArea";
 import users from "../data/users";
 import { useDispatch, useSelector } from "react-redux";
 import setUser from "@/redux/features/user";
+
 
 export default function ChatWindow() {
   const dispatch = useDispatch();

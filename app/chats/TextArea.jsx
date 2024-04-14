@@ -6,7 +6,7 @@ export default function TextArea() {
     const [socket, setSocket] = useState(undefined)
     useEffect(() => {
         let socket = io('http://localhost:5000/')
-        socket.emit('joinRoom', 1234)
+        socket.emit('joinRoom', '1234')
         socket.on('message', (msg) => {
             console.log(msg);
         })
@@ -16,8 +16,8 @@ export default function TextArea() {
         <form className="sticky bottom-0 w-full left-0" onSubmit={(e) => {
             e.preventDefault()
             let msg = e.target.chat.value
-            console.log(msg);
-            socket.emit('message', msg, 1234)
+            // console.log(msg);
+            socket.emit('message', msg, '1234', 'uid')
             e.target.chat.value = ''
         }}>
             {/* <label htmlFor="chat" className="">Your message</label> */}
