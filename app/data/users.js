@@ -1,11 +1,9 @@
-const { deflate } = require("zlib");
-
 const users = [
   {
     name: 'user1',
     chats: [
       {
-        sent: 'asdfas'
+        sent: 'asd'
       },
       {
         received: 'afsdfasdf'
@@ -66,7 +64,7 @@ const users = [
     ]
   },
   {
-    name: 'user2',
+    name: 'user3',
     chats: [
       {
         sent: 'asdfas'
