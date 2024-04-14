@@ -13,7 +13,7 @@ export default function TextArea() {
         setSocket(socket)
     }, [])
     return (
-        <form className="sticky bottom-0 w-full left-0" onSubmit={(e) => {
+        <form className="fixed bottom-0 w-3/4" onSubmit={(e) => {
             e.preventDefault()
             let msg = e.target.chat.value
             // console.log(msg);

@@ -1,6 +1,4 @@
-'use client'
-import Image from "next/image";
-import Navbar from '@/app/components/Navbar'
+"use client";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser, setUserId } from "@/redux/features/user";
 
