@@ -1,9 +1,18 @@
 import { setCurrentUser } from '@/redux/features/user'
 import axios from 'axios'
-import React from 'react'
+import { getCookie, setCookie } from 'cookies-next'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
 function Login() {
     const dispatch = useDispatch()
+
+    useEffect(()=>{
+        if(getCookie('uid')){
+            dispatch(setCurrentUser(getCookie('uid')))
+            window.location.href = "http://localhost:3000/chats"
+        }
+    },[])
 
     async function submitForm(formdata) {
         let uid = formdata.get('uid')
@@ -17,7 +26,7 @@ function Login() {
             // window.location.href = "http://localhost:3000/chats"
             dispatch(setCurrentUser(uid))
             if(res.data.msg=="login success"){
-
+                setCookie('uid',uid,{  maxAge: 60 * 60 * 24 })
                 window.location.href = "http://localhost:3000/chats"
             }
             else{
