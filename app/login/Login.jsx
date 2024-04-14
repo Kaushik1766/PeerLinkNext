@@ -12,7 +12,7 @@ function Login() {
             console.log(res)
             // window.alert(res.data.msg)
             // window.location.href = "http://localhost:3000/chats"
-            if(res.message=="login success"){
+            if(res.data.msg=="login success"){
                 window.location.href = "http://localhost:3000/chats"
             }
             else{
