@@ -1,7 +1,10 @@
+import { setCurrentUser } from '@/redux/features/user'
 import axios from 'axios'
 import React from 'react'
 
 function Login() {
+    const dispatch = useDispatch()
+
     async function submitForm(formdata) {
         let uid = formdata.get('uid')
         let password = formdata.get('password')
@@ -12,7 +15,9 @@ function Login() {
             console.log(res)
             // window.alert(res.data.msg)
             // window.location.href = "http://localhost:3000/chats"
+            dispatch(setCurrentUser(uid))
             if(res.data.msg=="login success"){
+
                 window.location.href = "http://localhost:3000/chats"
             }
             else{
