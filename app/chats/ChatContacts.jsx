@@ -1,15 +1,19 @@
-import React, { useSelector } from "react";
+"use client";
+import React, { useEffect } from "react";
 import users from "../data/users";
 import setUserId from "@/redux/features/user";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function chatContacts() {
-  
+  const selector = useSelector((state) => state.user);
+  useEffect(() => {
+    console.log(selector);
+  }, []);
   const dispatch = useDispatch();
   const handleClick = (clickedId) => {
-    console.log(clickedId);
     dispatch(setUserId(clickedId));
-  }
+  };
 
   return (
     <div className="flex gap-3 flex-col w-full">
