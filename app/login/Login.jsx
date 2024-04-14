@@ -1,24 +1,32 @@
+import { setCurrentUser } from '@/redux/features/user'
 import axios from 'axios'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { redirect } from 'next/navigation';
+
 
 function Login() {
+    const dispatch = useDispatch()
+    // const [uid, setUid] = useState(null)
     async function submitForm(formdata) {
         let uid = formdata.get('uid')
         let password = formdata.get('password')
-        axios.post('http://localhost:4000/login', {
+        let res = await axios.post('http://localhost:4000/login', {
             uid: uid,
             password: password
-        }).then((res)=>{
-            console.log(res)
-            // window.alert(res.data.msg)
-            // window.location.href = "http://localhost:3000/chats"
-            if(res.data.msg=="login success"){
-                window.location.href = "http://localhost:3000/chats"
-            }
-            else{
-                window.alert(res.data.msg)
-            }
         })
+        console.log(res)
+        // window.alert(res.data.msg)
+        // window.location.href = "http://localhost:3000/chats"
+        if (res.data.msg == "login success") {
+            console.log(uid);
+            dispatch(setCurrentUser(uid))
+            // window.location.href = "http://localhost:3000/chats"
+            redirect('/chats')
+        }
+        else {
+            window.alert(res.data.msg)
+        }
     }
     return (
         <form action={submitForm} className='flex flex-col mt-5 p-10 gap-8'>

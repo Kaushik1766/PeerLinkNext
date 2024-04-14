@@ -6,7 +6,7 @@ export default function TextArea() {
     const [socket, setSocket] = useState(undefined)
     useEffect(() => {
         let socket = io('http://localhost:5000/')
-        socket.emit('joinRoom', '1234')
+        socket.emit('joinRoom', '1486114863')
         socket.on('message', (msg) => {
             console.log(msg);
         })
@@ -17,7 +17,7 @@ export default function TextArea() {
             e.preventDefault()
             let msg = e.target.chat.value
             // console.log(msg);
-            socket.emit('message', msg, '1234', 'uid')
+            socket.emit('message', msg, '1486114862', '22bcs14861', '22bcs14862')
             e.target.chat.value = ''
         }}>
             {/* <label htmlFor="chat" className="">Your message</label> */}
