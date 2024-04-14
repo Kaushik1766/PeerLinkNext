@@ -15,8 +15,8 @@ function page() {
                     <div className="flex justify-evenly w-full py-16 bg-base-200 px-20">
                         <div className='w-1/2'>
                             <div className='flex gap-4'>
-                                <button className={`btn ${tab == 0 ? 'btn-primary' : 'btn-neutral'}`} onClick={() => setTab(0)}>Signup</button>
-                                <button className={`btn ${tab == 1 ? 'btn-primary' : 'btn-neutral'}`} onClick={() => setTab(1)}>Login</button>
+                                <button className={`btn ${tab == 0 ? 'btn-primary' : 'btn-neutral'}`} onClick={() => setTab(0)}>Login</button>
+                                <button className={`btn ${tab == 1 ? 'btn-primary' : 'btn-neutral'}`} onClick={() => setTab(1)}>Signup</button>
                             </div>
                             {
                                 tab == 0 && <Login />
