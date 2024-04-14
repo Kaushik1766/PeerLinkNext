@@ -1,27 +1,22 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import users from "../data/users";
-import setUserId from "@/redux/features/user";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { setUserId } from "@/redux/features/user";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function chatContacts() {
-  const selector = useSelector((state) => state.user);
-  useEffect(() => {
-    console.log(selector);
-  }, []);
-  const dispatch = useDispatch();
-  const handleClick = (clickedId) => {
-    dispatch(setUserId(clickedId));
-  };
 
+  const dispatch = useDispatch();
+  const selector = useSelector((state) => state.user.userId);
   return (
     <div className="flex gap-3 flex-col w-full">
       {users.map((e, i) => (
         <div
-          className=" p-2 bg-base-100 hover:bg-slate-600 border border-neutral shadow-md flex gap-4 items-center rounded-xl"
+          className={`p-2 ${selector === i ? "bg-slate-600" : "bg-base-600"} hover:bg-slate-600 hover:opacity-45 border border-neutral shadow-md flex gap-4 items-center rounded-xl`}
           key={i}
-          onClick={() => handleClick(i)}
+          onClick={() => {
+            dispatch(setUserId(i));
+          }}
         >
           <div className="chat-image avatar">
             <div className="w-10 rounded-full">
