@@ -18,14 +18,14 @@ function page() {
         <div>
           {[""].map((it, id) => {
             let keyArr = Object.keys(value?.data());
-            keyArr.sort()
-            return <div>{
-              keyArr.map((item,idx) => (
-                <div>
-                  {value.data()[item].msg}
-                </div>
-              ))
-            }</div>;
+            keyArr.sort();
+            return (
+              <div>
+                {keyArr.map((item, idx) => (
+                  <div>{value.data()[item].msg}</div>
+                ))}
+              </div>
+            );
           })}
         </div>
       )}
