@@ -5,6 +5,7 @@ export const userSlice = createSlice({
         userId: 0,
         currentUser: null,
         input: "",
+        roomID: ""
     },
     reducers: {
         setUserId: (state, action) => {
@@ -15,10 +16,13 @@ export const userSlice = createSlice({
         },
         setSearchValue: (state, action) => {
             state.input = action.payload
+        },
+        setRoomID: (state, action) => {
+            state.roomID = action.payload
         }
     }
 
 })
-export const { setUserId, setCurrentUser, setSearchValue } = userSlice.actions;
+export const { setUserId, setCurrentUser, setSearchValue, setRoomID } = userSlice.actions;
 // export const useDispatch = state => state.userId.userId;
 export default userSlice.reducer;

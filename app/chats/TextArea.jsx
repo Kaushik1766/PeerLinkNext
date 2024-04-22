@@ -3,10 +3,15 @@ import { useEffect, useState } from 'react'
 import { io } from 'socket.io-client'
 import { db } from '@/firebase/config'
 import { addDoc, doc, getDoc, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
+import { useSelector } from 'react-redux';
 
 
 export default function TextArea() {
     const [socket, setSocket] = useState(undefined)
+    const currentUserID = useSelector((state) => state.user.currentUser)
+    const roomID = useSelector((state) => state.user.roomID)
+    const msgReciever = useSelector((state) => state.user.userId)
+
     // useEffect(() => {
     //     let socket = io('http://localhost:5000/')
     //     socket.emit('joinRoom', '1486114862')
@@ -22,10 +27,10 @@ export default function TextArea() {
             // console.log(msg);
             // socket.emit('message', msg, '1486114862', '22bcs14861', '22bcs14863')
             // e.target.chat.value = ''
-            let roomname = '1486114862'
+            let roomname = roomID
             let time = new Date().getTime()
-            let sender = '22bcs14865'
-            let receiver = '22bcs14862'
+            let sender = currentUserID
+            let receiver = msgReciever
             console.log(time)
             const chatDocRef = doc(db, 'messages', roomname)
             const chatDocSnap = await getDoc(chatDocRef)

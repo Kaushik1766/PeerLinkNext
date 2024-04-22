@@ -9,8 +9,10 @@ import { db } from "@/firebase/config";
 
 export default function ChatWindow() {
   const currUser = useSelector((state) => state.user.currentUser)
+  const roomID = useSelector((state) => state.user.roomID)
+  console.log(roomID);
   const [value, loading, error] = useDocument(
-    doc(db, "messages", "1486114862")
+    doc(db, "messages", roomID==""?"1486214865":roomID)
   );
   const arr = ["fasdf"];
 

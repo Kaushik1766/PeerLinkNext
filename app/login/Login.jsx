@@ -1,4 +1,4 @@
-import { setCurrentUser } from '@/redux/features/user'
+import { setCurrentUser, setUserId } from '@/redux/features/user'
 import axios from 'axios'
 import { getCookie, setCookie } from 'cookies-next'
 import React, { useEffect } from 'react'
@@ -10,6 +10,7 @@ function Login() {
     useEffect(() => {
         if (getCookie('uid')) {
             dispatch(setCurrentUser(getCookie('uid')))
+             dispatch(setUserId('0'))
             window.location.href = "http://localhost:3000/chats"
         }
     }, [])
