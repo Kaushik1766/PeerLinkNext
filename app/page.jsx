@@ -1,24 +1,16 @@
 "use client";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser, setUserId } from "@/redux/features/user";
+import { useEffect } from "react";
 
 
 export default function Home() {
-  const user = useSelector((state) => state.user.userId)
-  const currentUser = useSelector((state) => state.user.currentUser)
-  const dispatch = useDispatch()
-
+  useEffect(() => {
+    window.location.href = 'http://localhost:3000/login'
+  }, [])
   return (
     <div>
-      <button className="btn btn-primary" onClick={() => {
-        dispatch(setCurrentUser(132))
-      }}> click me </button>
-      {
-        user
-      }
-      {
-        currentUser
-      }
+
     </div>
   );
 }

@@ -12,7 +12,7 @@ export default function ChatWindow() {
   const roomID = useSelector((state) => state.user.roomID)
   console.log(roomID);
   const [value, loading, error] = useDocument(
-    doc(db, "messages", roomID==""?"1486214865":roomID)
+    doc(db, "messages", roomID == "" ? "1486214865" : roomID)
   );
   const arr = ["fasdf"];
 
@@ -25,35 +25,52 @@ export default function ChatWindow() {
             {[""].map((chat, idx) => {
               let keyArr = Object.keys(value?.data());
               keyArr.sort();
-              {/* console.log(currUser) */}
+              console.log(keyArr)
               return (
                 <div>
-                  {keyArr.map((item, idx) => (
-                    <div
-                      className={`chat ${
-                        value.data()[item].sender === currUser ? "chat-end" : "chat-start"
-                      } w-full`}
-                      key={idx}
-                    >
-                      <div className="chat-image avatar">
-                        <div className="w-10 rounded-full">
-                          <img
-                            alt="Avatar"
-                            src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                          />
+                  {keyArr.map((item, idx) => {
+                    if (value.data()[item].sender == currUser) {
+                      return <div
+                        className={`chat chat-end w-full`}
+                        key={idx}
+                      >
+                        <div className="chat-image avatar">
+                          <div className="w-10 rounded-full">
+                            <img
+                              alt="Avatar"
+                              src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          className={`chat-bubble chat-bubble-primary`}
+                        >
+                          {value.data()[item].msg}
                         </div>
                       </div>
-                      <div
-                        className={`chat-bubble ${
-                          value.data()[item].sender === currUser
-                            ? "chat-bubble-primary"
-                            : "chat-bubble-accent"
-                        }`}
+                    }
+                    else {
+                      return <div
+                        className={`chat chat-start w-full`}
+                        key={idx}
                       >
-                        {value.data()[item].msg}
+                        <div className="chat-image avatar">
+                          <div className="w-10 rounded-full">
+                            <img
+                              alt="Avatar"
+                              src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          className={`chat-bubble chat-bubble-accent`}
+                        >
+                          {value.data()[item].msg}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    }
+
+                  })}
                 </div>
               );
             })}
